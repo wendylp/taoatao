@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.mapper.UserAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.taotao.pojo.UserAddress" >
+    <id column="id" property="id"/>
+    <result column="user_id" property="userId" />
+    <result column="username" property="username" />
+    <result column="phone" property="phone" />
+    <result column="address" property="address" />
+    <result column="is_default" property="isDefault" />
+    <result column="created" property="created" />
+    <result column="updated" property="updated" />
+  </resultMap>
+
+<!-- 添加地址 -->
+ <insert id="insert" parameterType="com.taotao.pojo.UserAddress">
+ 	INSERT INTO tb_address (
+ 							  user_id,
+							  username,
+							  phone,
+							  address,
+							  is_default,
+							  created,
+							  updated
+							) 
+							VALUES
+  							(
+  							 #{userId},
+  							 #{username},
+  							 #{phone},
+  							 #{address},
+  							 #{isDefault},
+  							 #{created},
+  							 #{updated}
+  							 ) 
+ </insert>
+  
+ <select id="selectAddressByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+ 	SELECT *FROM tb_address WHERE user_id = #{userId}
+ </select>
+  
+</mapper>
